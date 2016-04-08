@@ -1,0 +1,25 @@
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="S1">
+            <EntityType Name="Task">
+                <Key>
+                    <PropertyRef  Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false" sap:label=""></Property>
+                <Property Name="Name" Type="Edm.String" Nullable="false"></Property>
+                <Property Name="EntryDate" Type="Edm.DateTime" Nullable="false"></Property>
+                <Property Name="DueDate" Type="Edm.DateTime" Nullable="true"></Property>
+                <Property Name="Description" Type="Edm.String" Nullable="true"></Property>
+                <Property Name="Status" Type="Edm.String" Nullable="false"></Property>
+				<Property Name="Priority" Type="Edm.Double" Nullable="false"></Property>
+            </EntityType>
+            <EntityContainer Name="EC1" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Tasks" EntityType="S1.Task"></EntitySet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

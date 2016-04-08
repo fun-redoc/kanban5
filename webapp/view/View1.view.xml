@@ -1,0 +1,80 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="kanban5.controller.View1">
+	<App>
+		<pages>
+			<Page title="{i18n>LeanManagement}">
+				<content>
+					<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="__grid0" defaultSpan="XL4 L4 M12 S12">
+					    <sap.ui.layout:content xmlns:sap.ui.layout="sap.ui.layout">
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listNew" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'New'}], sorter: { path: 'Priority', descending: false}}">
+					            <items>
+					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="{Description}" id="__item0_copy3" info="{DueDate}"
+					                                      showCloseButton="false">
+					                	<buttons>
+					                		<Button width="100px" icon="sap-icon://media-play" press="onMoveToInWork"/>
+					                	</buttons>
+					                </NotificationListItem>
+					                
+					            </items>
+					            <headerToolbar>
+					                <Toolbar width="100%" id="__toolbar0">
+					                    <content>
+					                        <Button width="100px" id="__button0" icon="sap-icon://add" press="onAddItem"/>
+					                        <ToolbarSpacer id="__spacer0"/>
+					                        <Text text="{i18n>New}" maxLines="0" id="__text6"/>
+					                        <ToolbarSpacer id="__spacer1"/>
+					                        <ToolbarSpacer/>
+					                        </content>
+					                </Toolbar>
+					            </headerToolbar>
+					            </List>
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listInWork" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'InWork'}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
+					            <items>
+					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="{Description}" id="__item0_copy4" info="{DueDate}"
+					                					  showCloseButton="false">
+					                	<buttons>
+					                		<Button width="100px" icon="sap-icon://media-reverse" press="onMoveToNew"/>
+					                		<Button width="100px" icon="sap-icon://media-play" press="onMoveToCompleted"/>
+					                	</buttons>
+					                </NotificationListItem>
+					                
+					            </items>
+					            <headerToolbar>
+					                <Toolbar width="100%" id="__toolbar0_copy">
+					                    <content>
+					                        <ToolbarSpacer id="__spacer0_copy"/>
+					                        <Text text="{i18n>InWork}" maxLines="0" id="__text6_copy"/>
+					                        <ToolbarSpacer id="__spacer1_copy"/>
+					                    </content>
+					                </Toolbar>
+					                
+					            </headerToolbar>
+					            </List>
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listCompleted" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'Completed'}], sorter: { path: 'Priority', descending: false}}">
+					            <items>
+					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="Description tex{Description}" icon="sap-icon://picture" id="__item0_copy5"
+					                                      showCloseButton="true"
+					                                      close="onItemDelete">
+					                	<buttons>
+					                		<Button width="100px" icon="sap-icon://media-reverse" press="onMoveToInWork"/>
+					                	</buttons>
+					                </NotificationListItem>
+					                
+					            </items>
+					            <headerToolbar>
+					                <Toolbar width="100%" id="__toolbar0_copy2">
+					                    <content>
+					                        <ToolbarSpacer id="__spacer0_copy2"/>
+					                        <Text text="{i18n>Completed}" maxLines="0" id="__text6_copy2"/>
+					                        <ToolbarSpacer id="__spacer1_copy2"/>
+					                        </content>
+					                    
+					                </Toolbar>
+					                
+					            </headerToolbar>
+					            </List></sap.ui.layout:content>
+					</sap.ui.layout:Grid>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
