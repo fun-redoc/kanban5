@@ -1,0 +1,17 @@
+- drop on the end of list does not work properly
+- moving to inWork from new should hav the least priority (las element in the list)
+- moving to inWork from completd should hav highest priority
+- moving to new from inWork shold have the highest priority
+- group task by name
+- enable reasignment
+- enable input checks in the entry window (null values, date formats)
+- get rid of error, when tapping 2 times on +
+- get rid of error, when tapping 2 times on "assign to button
+- enable to take over when assigned
+- enable upload documents
+- enable show documents
+- enable send by mail
+
+DONE
+- enable to assign when in work
+- enable moving to assigned from new (assign when new)

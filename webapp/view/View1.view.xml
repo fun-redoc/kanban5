@@ -3,14 +3,18 @@
 		<pages>
 			<Page title="{i18n>LeanManagement}">
 				<content>
-					<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="__grid0" defaultSpan="XL4 L4 M12 S12">
+					<sap.ui.layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="__grid0" defaultSpan="XL3 L3 M12 S12">
 					    <sap.ui.layout:content xmlns:sap.ui.layout="sap.ui.layout">
-					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listNew" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'New'}], sorter: { path: 'Priority', descending: false}}">
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listNew" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'New'}, {path:'IsAssigned', operator:'EQ', value1:false}], sorter: { path: 'Priority', descending: false}}"> 
 					            <items>
-					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="{Description}" id="__item0_copy3" info="{DueDate}"
-					                                      showCloseButton="false">
+					                <NotificationListItem type="Detail" counter="0" title="{Name}" description="{Description}" id="__item0_copy3" info="{DueDate}"
+					                                      showButtons="true" 
+					                                      detailPress="onDetailPress"
+					                                      showCloseButton="true" 
+					                                      close="onItemDelete">
 					                	<buttons>
-					                		<Button width="100px" icon="sap-icon://media-play" press="onMoveToInWork"/>
+					                		<Button icon="sap-icon://person-placeholder" press="onAssign"/>
+					                		<Button icon="sap-icon://media-play" press="onMoveToInWork"/>
 					                	</buttons>
 					                </NotificationListItem>
 					                
@@ -18,7 +22,7 @@
 					            <headerToolbar>
 					                <Toolbar width="100%" id="__toolbar0">
 					                    <content>
-					                        <Button width="100px" id="__button0" icon="sap-icon://add" press="onAddItem"/>
+					                        <Button id="__button0" icon="sap-icon://add" press="onAddItem"/>
 					                        <ToolbarSpacer id="__spacer0"/>
 					                        <Text text="{i18n>New}" maxLines="0" id="__text6"/>
 					                        <ToolbarSpacer id="__spacer1"/>
@@ -26,14 +30,39 @@
 					                        </content>
 					                </Toolbar>
 					            </headerToolbar>
-					            </List>
-					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listInWork" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'InWork'}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
+					        </List>
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listAssigned" items="{path: '/Tasks', filters: [{path:'IsAssigned', operator:'EQ', value1:true}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
 					            <items>
-					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="{Description}" id="__item0_copy4" info="{DueDate}"
+					                <NotificationListItem type="DetailAndActive" counter="0" title="{Name}" description="{Description}" id="__item0_copy4a" info="{DueDate}"
+					                					  showCloseButton="false"
+					                					  showButtons="false">
+<!--					                	
+					                	<buttons>
+					                		<Button icon="sap-icon://media-reverse" press="onMoveToNew"/>
+					                		<Button icon="sap-icon://media-play" press="onMoveToCompleted"/>
+					                	</buttons>
+-->					                	
+					                </NotificationListItem>
+					                
+					            </items>
+					            <headerToolbar>
+					                <Toolbar width="100%" id="__toolbar0_copy1">
+					                    <content>
+					                        <ToolbarSpacer id="__spacer0_copy1"/>
+					                        <Text text="{i18n>Assigned}" maxLines="0" id="__text6_copy1"/>
+					                        <ToolbarSpacer id="__spacer1_copy1"/>
+					                    </content>
+					                </Toolbar>
+					                
+					            </headerToolbar>
+					        </List>
+					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listInWork" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'InWork'}, {path:'IsAssigned', operator:'EQ', value1:false}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
+					            <items>
+					                <NotificationListItem type="DetailAndActive" counter="0" title="{Name}" description="{Description}" id="__item0_copy4" info="{DueDate}"
 					                					  showCloseButton="false">
 					                	<buttons>
-					                		<Button width="100px" icon="sap-icon://media-reverse" press="onMoveToNew"/>
-					                		<Button width="100px" icon="sap-icon://media-play" press="onMoveToCompleted"/>
+					                		<Button icon="sap-icon://media-reverse" press="onMoveToNew"/>
+					                		<Button icon="sap-icon://media-play" press="onMoveToCompleted"/>
 					                	</buttons>
 					                </NotificationListItem>
 					                
@@ -48,14 +77,14 @@
 					                </Toolbar>
 					                
 					            </headerToolbar>
-					            </List>
+					        </List>
 					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listCompleted" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'Completed'}], sorter: { path: 'Priority', descending: false}}">
 					            <items>
 					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="Description tex{Description}" icon="sap-icon://picture" id="__item0_copy5"
 					                                      showCloseButton="true"
 					                                      close="onItemDelete">
 					                	<buttons>
-					                		<Button width="100px" icon="sap-icon://media-reverse" press="onMoveToInWork"/>
+					                		<Button icon="sap-icon://media-reverse" press="onMoveToInWork"/>
 					                	</buttons>
 					                </NotificationListItem>
 					                
@@ -71,7 +100,8 @@
 					                </Toolbar>
 					                
 					            </headerToolbar>
-					            </List></sap.ui.layout:content>
+					        </List>
+					    </sap.ui.layout:content>
 					</sap.ui.layout:Grid>
 				</content>
 			</Page>

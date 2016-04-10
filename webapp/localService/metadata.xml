@@ -16,6 +16,8 @@
                 <Property Name="Description" Type="Edm.String" Nullable="true"></Property>
                 <Property Name="Status" Type="Edm.String" Nullable="false"></Property>
 				<Property Name="Priority" Type="Edm.Double" Nullable="false"></Property>
+				<Property Name="IsAssigned" Type="Edm.Boolean" Nullable="false"></Property>
+				<Property Name="Assignee" Type="Edm.String" Nullable="true"></Property>
             </EntityType>
             <EntityContainer Name="EC1" m:IsDefaultEntityContainer="true">
                 <EntitySet Name="Tasks" EntityType="S1.Task"></EntitySet>
