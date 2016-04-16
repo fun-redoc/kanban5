@@ -66,18 +66,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 					}
 					var droppedId = ui.item[0].id;
 					var droppedItem = sap.ui.getCore().byId(droppedId);
+					var droppedObject = droppedItem.getBindingContext().getObject();
+					console.log("dropped", droppedObject);
 
 					var prevPrio = 0.0;
+					var savedPrevPrioInCaseOfReplacingLastItem = 0.0;
 					var prevUl = ui.item.prev();
 					if (prevUl.length > 0) {
 						var prevId = prevUl[0].id;
 						var prevItem = sap.ui.getCore().byId(prevId);
 						var prevObject = prevItem.getBindingContext().getObject();
+						savedPrevPrioInCaseOfReplacingLastItem = prevObject.Priority;
 						prevPrio = prevObject.Priority;
 						console.log("prev", prevObject);
 					}
 
-					var nextPrio = 0.0;
+					var nextPrio = savedPrevPrioInCaseOfReplacingLastItem + 1.0;
 					var nextUl = ui.item.next();
 					if (nextUl.length > 0) {
 						var nextId = nextUl[0].id; //ui.item.next()[0].id;
@@ -85,10 +89,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 						var nextObject = nextItem.getBindingContext().getObject();
 						nextPrio = nextObject.Priority;
 						console.log("next", nextObject);
+					} else {
+						console.log("no next item");
 					}
 
-					var droppedObject = droppedItem.getBindingContext().getObject();
-					console.log("dropped", droppedObject);
 					var droppedPrio = 0.5 * (prevPrio + nextPrio);
 					console.log("droppedPrio", droppedPrio);
 					droppedObject.Priority = droppedPrio;
@@ -184,6 +188,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 			console.log("onDetailPress", evt);
 		},
 
+		_minPriority: function() {
+			var items = this.getView().getModel().getProperty("/");
+			var keys = Object.keys(items);
+			return keys.reduce(function(accu, key) {
+					return accu > items[key].Priority ? items[key].Priority : accu;
+				},
+				Number.MAX_VALUE);
+		},
+
 		_maxPriority: function() {
 			var items = this.getView().getModel().getProperty("/");
 			var keys = Object.keys(items);
@@ -197,12 +210,24 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 			var sPath = bindingContext.getPath();
 			var obj = bindingContext.getObject();
 			var model = this.getView().getModel();
+			var oldStatus = obj.Status;
 			obj.Status = newStatus;
-			// TODO adjust priotity:
-			// New->InWork: end of the list
-			// InWork->Completed: beginning of the list
+			// adjust priotity:
+			// New->InWork: end of the list (least priority)
+			// InWork->Completed: beginning of the list (highest priority)
 			// Completed->InWOrk: beginning of the list
 			// inWork->New: beginning of the list
+			if(oldStatus === "New" && newStatus === "InWork") {
+				obj.Priority = this._minPriority()/2.0;
+			} else if(oldStatus === "InWork" && newStatus === "Completed") {
+				obj.Priority = this._maxPriority() + 1.0;
+			} else if(oldStatus === "Completed" && newStatus === "InWork") {
+				obj.Priority = this._maxPriority() + 1.0;
+			} else if(oldStatus === "InWork" && newStatus === "New") {
+				obj.Priority = this._maxPriority() + 1.0;
+			} else {
+				throw new Error("Programing Error");
+			}
 			model.update(sPath,
 				obj, {
 					success: function(oData, response) {
