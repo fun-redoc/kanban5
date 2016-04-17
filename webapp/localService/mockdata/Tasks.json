@@ -1,9 +1,9 @@
 [{
 	"ID": "e8d89b23-c6b8-4257-b791-fdcf32d994d4",
-	"Name": "Name 1",
+	"Name": "Task 1",
 	"EntryDate": "/Date(1031434374000)/",
 	"DueDate": "/Date(1486420374000)/",
-	"Description": "Description 1",
+	"Description": "Task Description 1",
 	"Status": "New",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -13,11 +13,25 @@
 	},
 	"Priority":0
 }, {
+	"ID": "idManuell1",
+	"Name": "Task Assigned to John Doe",
+	"EntryDate": "/Date(1451687574000)/",
+	"DueDate": "/Date(1545863524000)/",
+	"Description": "Task Description: Task Assigned to John Doe This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description This is a very very long Task description ",
+	"Status": "InWork",
+	"IsAssigned": true,
+	"Assignee": "Doe, John",
+	"__metadata": {
+		"uri": "Tasks(guid'idManuell1')",
+		"type": "S1.Task"
+	},
+	"Priority":1
+}, {
 	"ID": "c34fb2c4-2bdd-4248-a58e-ada7d5ec6eab",
-	"Name": "Name 2",
+	"Name": "Task 2",
 	"EntryDate": "/Date(1451687574000)/",
 	"DueDate": "/Date(1545863574000)/",
-	"Description": "Description 2",
+	"Description": "Task Description 2",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -28,10 +42,10 @@
 	"Priority":1
 }, {
 	"ID": "72b8fde1-8992-4727-a8c7-f3443c137e8e",
-	"Name": "Name 3",
+	"Name": "Task 3",
 	"EntryDate": "/Date(1130016774000)/",
 	"DueDate": "/Date(1302125574000)/",
-	"Description": "Description 3",
+	"Description": "Task Description 3",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -42,10 +56,10 @@
 	"Priority":2
 }, {
 	"ID": "c5426470-ce49-436d-aaf6-f4776d9ef0da",
-	"Name": "Name 4",
+	"Name": "Task 4",
 	"EntryDate": "/Date(1476999174000)/",
 	"DueDate": "/Date(1424039574000)/",
-	"Description": "Description 4",
+	"Description": "Task Description 4",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -56,10 +70,10 @@
 	"Priority":3
 }, {
 	"ID": "5a241676-8d35-450a-b9c4-0a8db7812563",
-	"Name": "Name 5",
+	"Name": "Task 5",
 	"EntryDate": "/Date(1028237574000)/",
 	"DueDate": "/Date(1460928774000)/",
-	"Description": "Description 5",
+	"Description": "Task Description 5",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -70,10 +84,10 @@
 	"Priority":4
 }, {
 	"ID": "0df9bd0c-6f50-4ffc-8d32-c4fe54f4d057",
-	"Name": "Name 6",
+	"Name": "Task 6",
 	"EntryDate": "/Date(1357597974000)/",
 	"DueDate": "/Date(1127165574000)/",
-	"Description": "Description 6",
+	"Description": "Task Description 6",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -84,10 +98,10 @@
 	"Priority":5
 }, {
 	"ID": "cd9de0ec-6ab6-462d-8d92-123d128af7b7",
-	"Name": "Name 7",
+	"Name": "Task 7",
 	"EntryDate": "/Date(1018301574000)/",
 	"DueDate": "/Date(1133908374000)/",
-	"Description": "Description 7",
+	"Description": "Task Description 7",
 	"Status": "InWork",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -98,10 +112,10 @@
 	"Priority":6
 }, {
 	"ID": "fe256d73-06e5-4851-9b95-9fd3430ac4e9",
-	"Name": "Name 8",
+	"Name": "Task 8",
 	"EntryDate": "/Date(950826774000)/",
 	"DueDate": "/Date(974759574000)/",
-	"Description": "Description 8",
+	"Description": "Task Description 8",
 	"Status": "Completed",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -112,10 +126,10 @@
 	"Priority":7
 }, {
 	"ID": "acee9dff-08a0-4582-aa98-d0bffcbac2eb",
-	"Name": "Name 9",
+	"Name": "Task 9",
 	"EntryDate": "/Date(1274823174000)/",
 	"DueDate": "/Date(1085866374000)/",
-	"Description": "Description 9",
+	"Description": "Task Description 9",
 	"Status": "Completed",
 	"IsAssigned": false,
 	"Assignee": null,
@@ -126,10 +140,10 @@
 	"Priority":8
 }, {
 	"ID": "d8758166-ade4-4131-b98a-8304def84495",
-	"Name": "Name 10",
+	"Name": "Task 10",
 	"EntryDate": "/Date(1023485574000)/",
 	"DueDate": "/Date(1242336774000)/",
-	"Description": "Description 10",
+	"Description": "Task Description 10",
 	"Status": "Completed",
 	"IsAssigned": false,
 	"Assignee": null,
