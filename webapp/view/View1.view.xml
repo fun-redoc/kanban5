@@ -76,6 +76,9 @@
 					                                   priority="{parts: ['DueDate'],formatter: '.formatPrio'}"
 					                					title="{Name}" 
 					                					description="{Description}" 
+					                                   datetime="{path:'DueDate', 
+					                                              type:'sap.ui.model.odata.type.DateTime',
+					                                              formatOptions: {style:'short', pattern:'dd MMM YY', relative:true, relativeScale:'day', relativeStyle:'narrow'}}"
 					                					  showCloseButton="false">
 					                	<buttons>
 					                		<Button icon="sap-icon://media-reverse" press="onMoveToNew"/>

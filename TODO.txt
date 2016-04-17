@@ -1,3 +1,4 @@
+- sorting options (default is priority, but also due date should be interesting)
 - limit WiP in the WiP Lane
 - group task by name
 - show lane Summary in the headers
