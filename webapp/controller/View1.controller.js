@@ -9,7 +9,25 @@ $.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-draggable");
 sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Controller, clone) {
 	"use strict";
 	return Controller.extend("kanban5.controller.View1", {
-
+		formatPrio : function(dueDate) {
+			if(!dueDate) {
+				return sap.ui.core.Priority.None;
+			}
+			var now = Date.now();
+			var deltaMillis = dueDate - now;
+			// TODO make shure due date starts at 00:00:00.000 otehrwise due dates will change in the middle of the day
+			if(deltaMillis < 0) {
+				// is over due
+				return sap.ui.core.Priority.High;
+			} else if( deltaMillis - 2*24*60*60*1000 < 0) {
+				// is due the next 48 hours
+				return sap.ui.core.Priority.Medium;
+			} else {
+				// enough time is left
+				return sap.ui.core.Priority.Low;
+			}
+		},
+		
 		onInit: function() {
 			var newList = this.getView().byId("__listNew");
 			var inWorkList = this.getView().byId("__listInWork");
@@ -122,7 +140,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 			var model = this.getView().getModel();
 			var newContextObject = model.createEntry("/Tasks", {
 				properties: {
-					Name: "Hallo",
+					Name: null,
 					Status: "New",
 					EntryDate: new Date(),
 					DueDate: null,
@@ -267,7 +285,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 				}))
 				.addContent(new sap.m.DatePicker(this.createId("EntryDate"), {
 					placeholder: "{i18n>EntryDate...}",
-					//dateValue:"{ path:"EntryDate", type:"sap.ui.model.odata.type.DateTime", formatOptions: { style: "medium", strictParsing: true} }"
 					dateValue: "{EntryDate}"
 				}))
 				.addContent(new sap.m.Label({
@@ -275,7 +292,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "kanban5/utils/clone"], function(Co
 				}))
 				.addContent(new sap.m.DatePicker(this.createId("DueDate"), {
 					placeholder: "{i18n>DueDate...}",
-					value: "{ path:'DueDate', type:'sap.ui.model.odata.type.DateTime', formatOptions: { style: 'medium', strictParsing: true} }"
+					dateValue: "{DueDate}"
 				}))
 				.addContent(new sap.m.Label({
 					text: "{i18n>assignTO}"

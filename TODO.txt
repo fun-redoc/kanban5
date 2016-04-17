@@ -1,9 +1,8 @@
-- drop on the end of list does not work properly
-- moving to inWork from new should hav the least priority (las element in the list)
-- moving to inWork from completd should hav highest priority
-- moving to new from inWork shold have the highest priority
+- limit WiP in the WiP Lane
 - group task by name
-- enable reasignment
+- show lane Summary in the headers
+-- new lane: number of items, number of overdue items, number of items due in 48 hours
+-- in work lane: number of items, number of overdue items, number of items due in 48 hours
 - enable input checks in the entry window (null values, date formats)
 - get rid of error, when tapping 2 times on +
 - get rid of error, when tapping 2 times on "assign to button
@@ -11,7 +10,15 @@
 - enable upload documents
 - enable show documents
 - enable send by mail
+- make shure due date starts at 00:00:00.000 otehrwise due dates will change in the middle of the day
+- trucate very long description texts
+- allow formatting of text like a Wiki maybe
 
 DONE
 - enable to assign when in work
 - enable moving to assigned from new (assign when new)
+- drop on the end of list does not work properly
+- moving to inWork from new should hav the least priority (las element in the list)
+- moving to inWork from completd should hav highest priority
+- moving to new from inWork shold have the highest priority
+- enable reasignment

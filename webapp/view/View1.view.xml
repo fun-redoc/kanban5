@@ -7,7 +7,14 @@
 					    <sap.ui.layout:content xmlns:sap.ui.layout="sap.ui.layout">
 					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listNew" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'New'}, {path:'IsAssigned', operator:'EQ', value1:false}], sorter: { path: 'Priority', descending: false}}"> 
 					            <items>
-					                <NotificationListItem type="Detail" counter="0" title="{Name}" description="{Description}" id="__item0_copy3" info="{DueDate}"
+					                <NotificationListItem id="__item0_copy3" 
+					                                    type="Detail" 
+					                                   datetime="{path:'DueDate', 
+					                                              type:'sap.ui.model.odata.type.DateTime',
+					                                              formatOptions: {style:'short', pattern:'dd MMM YY', relative:true, relativeScale:'day', relativeStyle:'narrow'}}"
+					                                   priority="{parts: ['DueDate'],formatter: '.formatPrio'}"
+					                					title="{Name}" 
+					                					description="{Description}" 
 					                                      showButtons="true" 
 					                                      detailPress="onDetailPress"
 					                                      showCloseButton="true" 
@@ -23,9 +30,8 @@
 					                <Toolbar width="100%" id="__toolbar0">
 					                    <content>
 					                        <Button id="__button0" icon="sap-icon://add" press="onAddItem"/>
-					                        <ToolbarSpacer id="__spacer0"/>
+					                        <ToolbarSpacer/>
 					                        <Text text="{i18n>New}" maxLines="0" id="__text6"/>
-					                        <ToolbarSpacer id="__spacer1"/>
 					                        <ToolbarSpacer/>
 					                        </content>
 					                </Toolbar>
@@ -33,15 +39,23 @@
 					        </List>
 					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listAssigned" items="{path: '/Tasks', filters: [{path:'IsAssigned', operator:'EQ', value1:true}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
 					            <items>
-					                <NotificationListItem type="DetailAndActive" counter="0" title="{Name}" description="{Description}" id="__item0_copy4a" info="{DueDate}"
-					                					  showCloseButton="false"
-					                					  showButtons="false">
-<!--					                	
+					                <NotificationListItem id="__item0_copy4a" 
+					                					  type="DetailAndActive" 
+					                                   priority="{parts: ['DueDate'],formatter: '.formatPrio'}"
+					                					  title="{Name}" 
+					                					  description="{Description}"
+					                					  truncate="true"
+					                                   authorName="{Assignee}"
+					                                   datetime="{path:'DueDate', 
+					                                              type:'sap.ui.model.odata.type.DateTime',
+					                                              formatOptions: {style:'short', pattern:'dd MMM YY', relative:true, relativeScale:'day', relativeStyle:'narrow'}}"
+					                                   
+					                					  showCloseButton="true"
+					                					  showButtons="true">
 					                	<buttons>
-					                		<Button icon="sap-icon://media-reverse" press="onMoveToNew"/>
-					                		<Button icon="sap-icon://media-play" press="onMoveToCompleted"/>
+					                		<Button icon="sap-icon://person-placeholder" press="onAssign"/>
 					                	</buttons>
--->					                	
+
 					                </NotificationListItem>
 					                
 					            </items>
@@ -58,7 +72,10 @@
 					        </List>
 					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listInWork" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'InWork'}, {path:'IsAssigned', operator:'EQ', value1:false}], sorter: { path: 'Priority', descending: false}}" itemPress="" delete="onTaskCompleted" mode="Delete">
 					            <items>
-					                <NotificationListItem type="DetailAndActive" counter="0" title="{Name}" description="{Description}" id="__item0_copy4" info="{DueDate}"
+					                <NotificationListItem id="__item0_copy4" type="DetailAndActive" 
+					                                   priority="{parts: ['DueDate'],formatter: '.formatPrio'}"
+					                					title="{Name}" 
+					                					description="{Description}" 
 					                					  showCloseButton="false">
 					                	<buttons>
 					                		<Button icon="sap-icon://media-reverse" press="onMoveToNew"/>
@@ -80,7 +97,12 @@
 					        </List>
 					        <List xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" noDataText="Drop list items here" id="__listCompleted" items="{path: '/Tasks', filters: [{path:'Status', operator:'EQ', value1:'Completed'}], sorter: { path: 'Priority', descending: false}}">
 					            <items>
-					                <NotificationListItem type="Navigation" counter="0" title="{Name}" description="Description tex{Description}" icon="sap-icon://picture" id="__item0_copy5"
+					                <NotificationListItem id="__item0_copy5" type="Navigation" 
+					                					counter="0" 
+					                					title="{Name}" 
+					                					description="Description tex{Description}" 
+					                                   priority="None"
+					                					icon="sap-icon://picture" 
 					                                      showCloseButton="true"
 					                                      close="onItemDelete">
 					                	<buttons>
